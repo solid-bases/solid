@@ -3,6 +3,7 @@ using Bricklayer.Builder;
 
 namespace Bricklayer.WallGenerators;
 
+// TODO: this is intentionally not cleaned, to be done by the trainee
 internal class ConsoleWallGenerator : IWallGenerator
 {
     private readonly RowBricks[] wall;
@@ -14,8 +15,6 @@ internal class ConsoleWallGenerator : IWallGenerator
 
     public void Generate()
     {
-
-        // print the wall
         for (int rowN = wall.Length - 1; rowN >= 0; rowN--)
         {
             var row = wall[rowN];

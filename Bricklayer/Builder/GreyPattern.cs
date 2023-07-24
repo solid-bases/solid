@@ -26,15 +26,23 @@ internal class GreyPattern
 
     public bool IsContainingBrick(int currentColNumber, int currentRowNumber)
     {
-        foreach (var greyRow in pattern)
-        {
-            if (greyRow.RowNumber != currentRowNumber) { continue; }
-            foreach (var greyCol in greyRow.ColumnsNumber)
-            {
-                if (greyCol != currentColNumber) { continue; }
-                return true;
-            }
-        }
-        return false;
+        return pattern
+            .Where(RowNumberIsCurrentRow(currentRowNumber))
+            .Any(CurrentColumnInGreyColumn(currentColNumber));
     }
+
+    private Func<RowPattern, bool> RowNumberIsCurrentRow(int currentRowNumber)
+    {
+        bool IsCurrentRow(RowPattern greyRow) => greyRow.RowNumber == currentRowNumber;
+        return IsCurrentRow;
+    }
+
+    private Func<RowPattern, bool> CurrentColumnInGreyColumn(int currentColNumber)
+    {
+        bool ContainsCurrentColumn(RowPattern greyRow) => greyRow.ColumnsNumber.Any(IsCurrentColumn);
+        bool IsCurrentColumn(int greyCol) => greyCol == currentColNumber;
+
+        return ContainsCurrentColumn;
+    }
+
 }

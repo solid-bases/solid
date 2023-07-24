@@ -5,12 +5,15 @@ namespace Bricklayer.WallGenerators;
 internal class WallGeneratorFactory
 {
 
+    // TODO: this is intentionally not cleaned, to be done by the trainee
     public static IWallGenerator NewGenerator(RowBricks[] wall)
     {
         var input = "\0";
-        do {
+        do
+        {
             Console.Write(Environment.NewLine);
-            if (input != "\0") {
+            if (input != "\0")
+            {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("Not valid input, please type C or H.");
                 Console.ResetColor();

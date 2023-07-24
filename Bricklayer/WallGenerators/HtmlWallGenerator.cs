@@ -5,6 +5,7 @@ using Bricklayer.Builder;
 
 namespace Bricklayer.WallGenerators;
 
+// TODO: this is intentionally not cleaned, to be done by the trainee
 internal class HtmlWallGenerator : IWallGenerator
 {
     private readonly RowBricks[] wall;
