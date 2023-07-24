@@ -139,12 +139,12 @@ Applying SRP, we could assume this corollaries.
 
 ### Functions
 
-> «The first rule of functions is that they should be small. The second rule of the functions is that *they should be smaller than that*.»
-> [...]
+> «The first rule of functions is that they should be small. The second rule of the functions is that *they should be smaller than that*.»<br />
+> [...]<br />
 > «Functions should do one thing. They should do it well. They should do it only.»
 > Robert C. Martin - Clean Code - Chapter 3: Functions
 
 ### Classes
 
-> «The first rule of classes is that they should be small. The second rule of the classes is that *they should be smaller than that*.»
+> «The first rule of classes is that they should be small. The second rule of the classes is that *they should be smaller than that*.»<br />
 > Robert C. Martin - Clean Code - Chapter 10: Classes
