@@ -90,7 +90,7 @@ Let's consider
 
   ```csharp
   class Zoo {
-    List<Animal> cage;
+    List<Animal> cage = new();
     public void putAnimalInTheCage(Animal animal) {
         cage.Add(animal);
     }
@@ -135,7 +135,7 @@ In this way `Zoo` code will be
 
 ```csharp
 class Zoo {
-  List<GenericAnimal> cage;
+  List<GenericAnimal> cage = new();
   public void putAnimalInTheCage(GenericAnimal animal) {
       cage.Add(animal);
   }
@@ -195,7 +195,7 @@ and the classes may or may not have the same base class:
       void hasBeak() { /* implementation */ }
   }
   class Zoo {
-    List<IAnimal> cage;
+    List<IAnimal> cage = new();
     public void putAnimalInTheCage(IAnimal animal) {
         cage.Add(animal);
     }
