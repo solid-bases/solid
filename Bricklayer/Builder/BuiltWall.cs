@@ -4,15 +4,14 @@ namespace Bricklayer.Builder;
 
 internal class BuiltWall
 {
-
     internal int BuiltHeight { get; private set; }
     internal int CurrentRowNumber { get; private set; } = 1;
 
-    List<RowBricks> wall = new();
+    private readonly List<RowBricks> _wall = new();
     private readonly int _totalWidth;
-    private readonly GreyPattern _greyPattern;
+    private readonly GreyPattern? _greyPattern;
 
-    public BuiltWall(int totalWidth, GreyPattern greyPattern)
+    public BuiltWall(int totalWidth, GreyPattern? greyPattern)
     {
         _totalWidth = totalWidth;
         _greyPattern = greyPattern;
@@ -42,9 +41,9 @@ internal class BuiltWall
 
     private void AppendRowToWall(RowBricks row)
     {
-        wall.Add(row);
+        _wall.Add(row);
         IncreaseRowNumber();
-        IncreaseBuiltHeight(row.Bricks.First());
+        IncreaseBuiltHeight(row.Bricks[0]);
     }
 
     private void IncreaseRowNumber()
@@ -57,5 +56,5 @@ internal class BuiltWall
         BuiltHeight += brick.Height;
     }
 
-    internal RowBricks[] ToArray() => wall.ToArray();
+    internal RowBricks[] ToArray() => _wall.ToArray();
 }

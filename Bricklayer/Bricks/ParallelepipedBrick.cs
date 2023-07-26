@@ -5,12 +5,12 @@ internal class ParallelepipedBrick : Brick
     internal override int Width { get => base.Width; set => SetSizesFromLongEdge(value); }
     internal override int Height { get => base.Height; set => SetSizesFromShortEdge(value); }
     internal override int Depth { get => base.Depth; set => SetSizesFromShortEdge(value); }
-    internal override BrickColor Color { get => brickColor.Color; set => brickColor.Color = value; }
+    internal override BrickColor Color { get => _brickColor.Color; set => _brickColor.Color = value; }
 
-    private Brick brickColor;
+    private readonly Brick _brickColor;
     public ParallelepipedBrick(Brick brickColor)
     {
-        this.brickColor = brickColor;
+        this._brickColor = brickColor;
     }
 
     private void SetSizesFromLongEdge(int value)

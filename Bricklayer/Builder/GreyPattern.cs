@@ -2,31 +2,30 @@ namespace Bricklayer.Builder;
 
 internal class GreyPattern
 {
-    private RowPattern[] pattern;
-
+    private RowPattern[] _pattern;
     internal RowPattern[] Pattern
     {
-        get => pattern;
+        get => _pattern;
         set
         {
             if (value == null)
             {
-                pattern = new RowPattern[0];
+                _pattern = Array.Empty<RowPattern>();
                 return;
             }
-            pattern = value;
+            _pattern = value;
         }
     }
 
     public GreyPattern(RowPattern[] pattern)
     {
-        this.pattern = pattern;
+        this._pattern = pattern;
     }
 
 
     public bool IsContainingBrick(int currentColNumber, int currentRowNumber)
     {
-        return pattern
+        return _pattern
             .Where(RowNumberIsCurrentRow(currentRowNumber))
             .Any(CurrentColumnInGreyColumn(currentColNumber));
     }

@@ -30,13 +30,10 @@ internal partial class Program
             },
         });
 
-        WallBuilder builder = new(greyPattern);
+        GeneralWallBuilder builder = new StandardWallBuilder(greyPattern);
         RowBricks[] wall = builder.BuildWall();
 
         IWallGenerator printer = WallGeneratorFactory.NewGenerator(wall);
         printer.Generate();
-
     }
-
-
 }

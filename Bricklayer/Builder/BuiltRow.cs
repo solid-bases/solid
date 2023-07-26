@@ -8,13 +8,13 @@ internal class BuiltRow
 
     internal int TotalWidth { get; set; }
 
-    List<Brick> row = new();
-    private readonly GreyPattern greyPattern;
+    readonly List<Brick> _row = new();
+    private readonly GreyPattern? _greyPattern;
 
-    public BuiltRow(int totalWidth, GreyPattern greyPattern)
+    public BuiltRow(int totalWidth, GreyPattern? greyPattern)
     {
         TotalWidth = totalWidth;
-        this.greyPattern = greyPattern;
+        this._greyPattern = greyPattern;
     }
 
     internal void AppendNewBrick(int currentRowNumber) {
@@ -25,7 +25,7 @@ internal class BuiltRow
     private Brick DefineNewBrick(int currentRowNumber)
     {
         Brick currentBrick = NewRedParallelepipedBrick();
-        if (greyPattern.IsContainingBrick(CurrentColNumber, currentRowNumber))
+        if (_greyPattern?.IsContainingBrick(CurrentColNumber, currentRowNumber) == true)
         {
             currentBrick = NewGreyParallelepipedBrick();
         }
@@ -39,12 +39,12 @@ internal class BuiltRow
         return currentBrick;
     }
 
-    private Brick NewRedParallelepipedBrick() => new RedParallelepipedBrick
+    private static Brick NewRedParallelepipedBrick() => new RedParallelepipedBrick
     {
         Width = 20
     };
 
-    private Brick NewGreyParallelepipedBrick() => new GreyParallelepipedBrick
+    private static Brick NewGreyParallelepipedBrick() => new GreyParallelepipedBrick
     {
         Width = 20
     };
@@ -52,7 +52,7 @@ internal class BuiltRow
     private Brick GetRedCubicBrickWhenNecessary(Brick currentBrick)
     {
         bool firstCol = CurrentColNumber == 1;
-        if (!firstCol && !lastCol(currentBrick))
+        if (!firstCol && !LastCol(currentBrick))
         {
             return currentBrick;
         }
@@ -60,9 +60,9 @@ internal class BuiltRow
         return NewRedCubicBrick();
     }
 
-    bool lastCol(Brick brick) => BuiltWidth + brick.Width >= TotalWidth;
+    bool LastCol(Brick brick) => BuiltWidth + brick.Width >= TotalWidth;
 
-    private Brick NewRedCubicBrick() => new RedCubicBrick
+    private static Brick NewRedCubicBrick() => new RedCubicBrick
     {
         Size = 10,
         Color = BrickColor.Red
@@ -70,7 +70,7 @@ internal class BuiltRow
 
     private void AppendBrickToRow(Brick brick)
     {
-        row.Add(brick);
+        _row.Add(brick);
 
         IncreaseColNumber();
         IncreaseBuiltWidth(brick);
@@ -86,5 +86,5 @@ internal class BuiltRow
         BuiltWidth += brick.Width;
     }
 
-    internal Brick[] ToArray() => row.ToArray();
+    internal Brick[] ToArray() => _row.ToArray();
 }
