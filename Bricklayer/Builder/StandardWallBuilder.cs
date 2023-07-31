@@ -2,7 +2,7 @@ namespace Bricklayer.Builder;
 
 internal class StandardWallBuilder : GeneralWallBuilder
 {
-    public StandardWallBuilder(GreyPattern greyPattern)
+    public StandardWallBuilder(IGreyPattern greyPattern)
     {
         _greyPattern = greyPattern;
     }

@@ -2,7 +2,7 @@ namespace Bricklayer.Builder;
 
 internal abstract class GeneralWallBuilder
 {
-    protected GreyPattern? _greyPattern;
+    protected IGreyPattern? _greyPattern;
     protected readonly int _totalWidth = 180;
     protected readonly int _totalHeight = 90;
 

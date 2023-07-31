@@ -1,31 +1,66 @@
 namespace Bricklayer.Builder;
 
-internal class GreyPattern
+internal class GreyPattern : IGreyPattern
 {
-    private RowPattern[] _pattern;
-    internal RowPattern[] Pattern
-    {
-        get => _pattern;
-        set
-        {
-            if (value == null)
-            {
-                _pattern = Array.Empty<RowPattern>();
-                return;
-            }
-            _pattern = value;
-        }
-    }
+    public RowPattern[] Pattern { get => IsRectangle ? _rectangularPattern : _rhombusPattern; }
 
-    public GreyPattern(RowPattern[] pattern)
-    {
-        this._pattern = pattern;
-    }
+    private readonly RowPattern[] _rhombusPattern = new[] {
+            new RowPattern {
+                RowNumber = 3,
+                ColumnsNumber = new[] { 5 }
+            },
+            new RowPattern {
+                RowNumber = 4,
+                ColumnsNumber = new[] { 5,6 }
+            },
+            new RowPattern {
+                RowNumber = 5,
+                ColumnsNumber = new[] { 4,6 }
+            },
+            new RowPattern {
+                RowNumber = 6,
+                ColumnsNumber = new[] { 5,6 }
+            },
+            new RowPattern {
+                RowNumber = 7,
+                ColumnsNumber = new[] { 5 }
+            },
+        };
 
+    private readonly RowPattern[] _rectangularPattern = new[] {
+            new RowPattern {
+                RowNumber = 3,
+                ColumnsNumber = new[] { 3,4,5,6,7 }
+            },
+            new RowPattern {
+                RowNumber = 4,
+                ColumnsNumber = new[] { 4,9 }
+            },
+            new RowPattern {
+                RowNumber = 5,
+                ColumnsNumber = new[] { 3,7 }
+            },
+            new RowPattern {
+                RowNumber = 6,
+                ColumnsNumber = new[] { 4,9 }
+            },
+            new RowPattern {
+                RowNumber = 7,
+                ColumnsNumber = new[] { 3,4,5,6,7 }
+            },
+        };
+
+    public bool IsRectangle { get; private set; }
+
+    public IGreyPattern SetAsRectangle()
+    {
+        IsRectangle = true;
+        return this;
+    }
 
     public bool IsContainingBrick(int currentColNumber, int currentRowNumber)
     {
-        return _pattern
+        return Pattern
             .Where(RowNumberIsCurrentRow(currentRowNumber))
             .Any(CurrentColumnInGreyColumn(currentColNumber));
     }
@@ -43,5 +78,4 @@ internal class GreyPattern
 
         return ContainsCurrentColumn;
     }
-
 }

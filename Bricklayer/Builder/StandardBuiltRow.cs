@@ -1,23 +1,30 @@
 using Bricklayer.Bricks;
 
 namespace Bricklayer.Builder;
-internal class BuiltRow
-{
-    internal int BuiltWidth { get; private set; }
-    internal int CurrentColNumber { get; private set; } = 1;
 
-    internal int TotalWidth { get; set; }
+internal abstract class StandardBuiltRow : IBuiltRow
+{
+    public virtual int BuiltWidth { get; private set; }
+    public virtual int CurrentColNumber { get; private set; } = 1;
+
+    public virtual int TotalWidth { get; }
 
     readonly List<Brick> _row = new();
-    private readonly GreyPattern? _greyPattern;
+    protected readonly IGreyPattern? _greyPattern;
 
-    public BuiltRow(int totalWidth, GreyPattern? greyPattern)
+    protected StandardBuiltRow(int totalWidth, IGreyPattern? greyPattern)
     {
         TotalWidth = totalWidth;
-        this._greyPattern = greyPattern;
+        _greyPattern = greyPattern;
     }
 
-    internal void AppendNewBrick(int currentRowNumber) {
+    public static IBuiltRow Create(int totalWidth, IGreyPattern? greyPattern)
+    {
+        return greyPattern?.IsRectangle == true ? new RectangularBuiltRow(totalWidth, greyPattern) : new RhombusBuiltRow(totalWidth, greyPattern);
+    }
+
+    public virtual void AppendNewBrick(int currentRowNumber)
+    {
         var brick = DefineNewBrick(currentRowNumber);
         AppendBrickToRow(brick);
     }
@@ -33,7 +40,7 @@ internal class BuiltRow
         bool evenRow = currentRowNumber % 2 == 0;
         if (evenRow)
         {
-            currentBrick = GetRedCubicBrickWhenNecessary(currentBrick);
+            currentBrick = GetRedCubicBrickWhenNecessary(currentBrick, currentRowNumber);
         }
 
         return currentBrick;
@@ -49,18 +56,15 @@ internal class BuiltRow
         Width = 20
     };
 
-    private Brick GetRedCubicBrickWhenNecessary(Brick currentBrick)
+    private Brick GetRedCubicBrickWhenNecessary(Brick currentBrick, int currentRowNumber)
     {
         bool firstCol = CurrentColNumber == 1;
-        if (!firstCol && !LastCol(currentBrick))
-        {
-            return currentBrick;
-        }
-
-        return NewRedCubicBrick();
+        return IsCubicBrickNecessary(currentBrick, firstCol, currentRowNumber) ? NewRedCubicBrick() : currentBrick;
     }
 
-    bool LastCol(Brick brick) => BuiltWidth + brick.Width >= TotalWidth;
+    protected abstract bool IsCubicBrickNecessary(Brick currentBrick, bool firstCol, int currentRowNumber);
+
+    protected bool LastCol(Brick brick) => BuiltWidth + brick.Width >= TotalWidth;
 
     private static Brick NewRedCubicBrick() => new RedCubicBrick
     {
@@ -86,5 +90,5 @@ internal class BuiltRow
         BuiltWidth += brick.Width;
     }
 
-    internal Brick[] ToArray() => _row.ToArray();
+    public virtual Brick[] ToArray() => _row.ToArray();
 }

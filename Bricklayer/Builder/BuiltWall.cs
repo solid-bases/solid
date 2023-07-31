@@ -9,9 +9,9 @@ internal class BuiltWall
 
     private readonly List<RowBricks> _wall = new();
     private readonly int _totalWidth;
-    private readonly GreyPattern? _greyPattern;
+    private readonly IGreyPattern? _greyPattern;
 
-    public BuiltWall(int totalWidth, GreyPattern? greyPattern)
+    public BuiltWall(int totalWidth, IGreyPattern? greyPattern)
     {
         _totalWidth = totalWidth;
         _greyPattern = greyPattern;
@@ -25,7 +25,7 @@ internal class BuiltWall
 
     private RowBricks CreateNewBricksRow()
     {
-        var builtRow = new BuiltRow(_totalWidth, _greyPattern);
+        IBuiltRow builtRow = StandardBuiltRow.Create(_totalWidth, _greyPattern);
 
         while (builtRow.BuiltWidth < _totalWidth)
         {
