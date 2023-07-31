@@ -1,4 +1,4 @@
-namespace Bricklayer.Builder;
+namespace Bricklayer.Builder.Pattern;
 
 internal interface IGreyPattern
 {
@@ -6,5 +6,5 @@ internal interface IGreyPattern
     RowPattern[] Pattern { get; }
 
     bool IsContainingBrick(int currentColNumber, int currentRowNumber);
-    IGreyPattern SetAsRectangle();
+    void AskForWallType();
 }

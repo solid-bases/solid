@@ -1,10 +1,8 @@
-namespace Bricklayer.Builder;
+namespace Bricklayer.Builder.Pattern;
 
-internal class GreyPattern : IGreyPattern
+internal static class AvailableGreyPatterns
 {
-    public RowPattern[] Pattern { get => IsRectangle ? _rectangularPattern : _rhombusPattern; }
-
-    private readonly RowPattern[] _rhombusPattern = new[] {
+    public static RowPattern[] RhombusPattern => new[] {
             new RowPattern {
                 RowNumber = 3,
                 ColumnsNumber = new[] { 5 }
@@ -27,7 +25,7 @@ internal class GreyPattern : IGreyPattern
             },
         };
 
-    private readonly RowPattern[] _rectangularPattern = new[] {
+    public static RowPattern[] RectangularPattern => new[] {
             new RowPattern {
                 RowNumber = 3,
                 ColumnsNumber = new[] { 3,4,5,6,7 }
@@ -49,33 +47,4 @@ internal class GreyPattern : IGreyPattern
                 ColumnsNumber = new[] { 3,4,5,6,7 }
             },
         };
-
-    public bool IsRectangle { get; private set; }
-
-    public IGreyPattern SetAsRectangle()
-    {
-        IsRectangle = true;
-        return this;
-    }
-
-    public bool IsContainingBrick(int currentColNumber, int currentRowNumber)
-    {
-        return Pattern
-            .Where(RowNumberIsCurrentRow(currentRowNumber))
-            .Any(CurrentColumnInGreyColumn(currentColNumber));
-    }
-
-    private Func<RowPattern, bool> RowNumberIsCurrentRow(int currentRowNumber)
-    {
-        bool IsCurrentRow(RowPattern greyRow) => greyRow.RowNumber == currentRowNumber;
-        return IsCurrentRow;
-    }
-
-    private Func<RowPattern, bool> CurrentColumnInGreyColumn(int currentColNumber)
-    {
-        bool ContainsCurrentColumn(RowPattern greyRow) => greyRow.ColumnsNumber.Any(IsCurrentColumn);
-        bool IsCurrentColumn(int greyCol) => greyCol == currentColNumber;
-
-        return ContainsCurrentColumn;
-    }
 }
