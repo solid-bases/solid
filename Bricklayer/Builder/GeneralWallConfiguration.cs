@@ -6,5 +6,5 @@ internal class GeneralWallConfiguration
     private readonly int _totalHeight = 90;
     protected GreyPattern _greyPattern = new(Array.Empty<RowPattern>());
 
-    public RowBricks[] BuildWall() => new BuildWall(_totalHeight, _totalWidth, _greyPattern).ToArray();
+    public virtual RowBricks[] BuildWall() => new BuildWall(_totalHeight, _totalWidth, _greyPattern).ToArray();
 }
