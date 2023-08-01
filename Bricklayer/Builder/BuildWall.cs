@@ -32,6 +32,12 @@ internal class BuildWall {
         AppendRowToWall(currentRowNumber, currentRow);
     }
 
+    private Brick[] NewBricksRow(int currentRowNumber)
+    {
+        var rowBuilder = new BuildRow(_totalWidth, _greyPattern, currentRowNumber);
+        return rowBuilder.ToArray();
+    }
+
     private void AppendRowToWall(int currentRowNumber, Brick[] currentRow)
     {
         _wall.Add(new RowBricks
@@ -41,11 +47,5 @@ internal class BuildWall {
         });
 
         _builtHeight += currentRow[0].Height;
-    }
-
-    private Brick[] NewBricksRow(int currentRowNumber)
-    {
-        var rowBuilder = new BuildRow(_totalWidth, _greyPattern, currentRowNumber);
-        return rowBuilder.ToArray();
     }
 }
