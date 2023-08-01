@@ -11,5 +11,15 @@ internal class WrongLSPRectangularBuildRow : BuildRow, IBuildRow {
     {
     }
 
-    //protected override bool IsCubicBrickNecessary(Brick currentBrick, bool firstCol, int currentRowNumber, int currentColNumber) => false;
+    // This method is expected to append a brick to the row until the row is full, but it is actually only
+    // logging the current column number.
+    protected override void BuildCurrentRow()
+    {
+        for (var currentColNumber = 1; _builtWidth < _totalWidth; currentColNumber++)
+        {
+            Console.WriteLine($"currentColNumber: {currentColNumber}");
+        }
+    }
+
+    protected override bool IsCubicBrickNecessary(Brick currentBrick, bool firstCol, int currentRowNumber, int currentColNumber) => false;
 }

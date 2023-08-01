@@ -7,10 +7,10 @@ internal abstract class BuildRow : IBuildRow
 {
     protected readonly IGreyPattern _greyPattern;
 
-    private readonly List<Brick> _row = new();
-    private readonly int _totalWidth;
-    private readonly int _currentRowNumber;
-    private int _builtWidth = 0;
+    protected readonly List<Brick> _row = new();
+    protected readonly int _totalWidth;
+    protected readonly int _currentRowNumber;
+    protected int _builtWidth = 0;
 
     protected BuildRow(int totalWidth, IGreyPattern greyPattern, int currentRowNumber)
     {
