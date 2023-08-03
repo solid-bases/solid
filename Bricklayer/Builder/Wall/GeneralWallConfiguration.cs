@@ -13,5 +13,5 @@ internal class GeneralWallConfiguration
         _greyPattern.AskForWallType();
     }
 
-    public RowBricks[] BuildWall() => new BuildWall(_totalHeight, _totalWidth, _greyPattern).ToArray();
+    public virtual RowBricks[] BuildWall() => new BuildWall(_totalHeight, _totalWidth, _greyPattern).ToArray();
 }
