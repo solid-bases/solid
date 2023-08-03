@@ -5,14 +5,14 @@ namespace Bricklayer.Builder.Row;
 
 internal abstract class BuildRow : IBuildRow
 {
-    protected readonly IGreyPattern _greyPattern;
+    protected readonly ICanCheckContainingBrick _greyPattern;
 
     protected readonly List<Brick> _row = new();
     protected readonly int _totalWidth;
     protected readonly int _currentRowNumber;
     protected int _builtWidth = 0;
 
-    protected BuildRow(int totalWidth, IGreyPattern greyPattern, int currentRowNumber)
+    protected BuildRow(int totalWidth, ICanCheckContainingBrick greyPattern, int currentRowNumber)
     {
         _totalWidth = totalWidth;
         _greyPattern = greyPattern;
@@ -21,7 +21,7 @@ internal abstract class BuildRow : IBuildRow
         BuildCurrentRow();
     }
 
-    public static IBuildRow Create(int totalWidth, IGreyPattern greyPattern, int currentRowNumber)
+    public static IBuildRow Create(int totalWidth, ICanCheckContainingBrickAndRectangle greyPattern, int currentRowNumber)
     {
         return greyPattern.IsRectangle
             ? new RectangularBuildRow(totalWidth, greyPattern, currentRowNumber)

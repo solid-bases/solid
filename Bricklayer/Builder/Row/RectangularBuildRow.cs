@@ -5,7 +5,7 @@ namespace Bricklayer.Builder.Row;
 
 internal class RectangularBuildRow : BuildRow, IBuildRow
 {
-    public RectangularBuildRow(int totalWidth, IGreyPattern greyPattern, int currentRowNumber)
+    public RectangularBuildRow(int totalWidth, ICanCheckContainingBrick greyPattern, int currentRowNumber)
         : base(totalWidth, greyPattern, currentRowNumber)
     {
     }

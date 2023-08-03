@@ -9,10 +9,10 @@ internal class BuildWall : IBuildWall
     private readonly List<RowBricks> _wall = new();
     private readonly int _totalHeight;
     private readonly int _totalWidth;
-    private readonly GreyPattern _greyPattern;
+    private readonly ICanCheckContainingBrickAndRectangle _greyPattern;
     private int _builtHeight = 0;
 
-    public BuildWall(int totalHeight, int totalWidth, GreyPattern greyPattern)
+    public BuildWall(int totalHeight, int totalWidth, ICanCheckContainingBrickAndRectangle greyPattern)
     {
         _totalHeight = totalHeight;
         _totalWidth = totalWidth;

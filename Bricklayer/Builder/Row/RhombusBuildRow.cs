@@ -5,7 +5,7 @@ namespace Bricklayer.Builder.Row;
 
 internal class RhombusBuildRow : BuildRow, IBuildRow
 {
-    public RhombusBuildRow(int totalWidth, IGreyPattern greyPattern, int currentRowNumber)
+    public RhombusBuildRow(int totalWidth, ICanCheckContainingBrick greyPattern, int currentRowNumber)
         : base(totalWidth, greyPattern, currentRowNumber)
     {
     }

@@ -6,11 +6,11 @@ internal class GeneralWallConfiguration
 {
     private readonly int _totalWidth = 180;
     private readonly int _totalHeight = 90;
-    protected GreyPattern _greyPattern;
-    public GeneralWallConfiguration(GreyPattern greyPattern)
+    protected ICanCheckContainingBrickAndRectangle _greyPattern;
+    public GeneralWallConfiguration(IGreyPattern greyPattern)
     {
         _greyPattern = greyPattern;
-        _greyPattern.AskForWallType();
+        greyPattern.AskForWallType();
     }
 
     public virtual RowBricks[] BuildWall() => new BuildWall(_totalHeight, _totalWidth, _greyPattern).ToArray();
