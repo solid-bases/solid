@@ -12,7 +12,7 @@ Some language allows multiple inheritance, where an object can be derived from t
 
 The derived object will inherit the behaviour of the base class and can access all the `public`, `internal` and `protected` fields and methods.
 
-If a field or method is marked as `virtual` in the base object, the derived one can `overwrite` the behaviour and re-define the operations performed.
+If a field or method is marked as `virtual` in the base object, the derived one can `override` the behaviour and re-define the operations performed.
 
 ### Single inheritance
 
@@ -88,7 +88,7 @@ class Square {
         this.rectangle = rectangle;
     }
     public double Area() => rectangle.Area();
-    public double Perimeter() => rectangle.Perimeter;
+    public double Perimeter() => rectangle.Perimeter();
 }
 
 // Usage
