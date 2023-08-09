@@ -27,6 +27,7 @@ internal static class Program
     {
         collection.AddSingleton<IPatternHandler, PatternHandler>();
         collection.AddSingleton<IAvailablePatterns, AvailablePatterns>();
+        //collection.AddSingleton<IAvailablePatterns, AlternativeAvailablePatterns>();
         collection.AddSingleton<IWallBuilder, StandardWallBuilder>();
 
         collection.AddHostedService<HostedService>();

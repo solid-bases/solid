@@ -119,6 +119,7 @@ class BankAccount {
     }
     public void OutTransfer(decimal amount) {
         // ... code ...
+        _storage.CheckAvailability(amount);
         _storage.DecrementAvailability(amount);
         // ... code ...
     }
