@@ -11,12 +11,6 @@
       "group": "pre-commit",
       "command": "dotnet",
       "args": [ "build" ]
-    },
-    {
-      "name": "git add",
-      "group": "pre-commit",
-      "command": "git",
-      "args": [ "add", "." ]
     }
   ]
 }
