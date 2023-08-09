@@ -1,8 +1,8 @@
 namespace Bricklayer.Builder.Pattern;
 
-internal static class AvailableGreyPatterns
+internal class AvailablePatterns : IAvailablePatterns
 {
-    public static RowPattern[] RhombusPattern => new[] {
+    public RowPattern[] RhombusPattern => new[] {
             new RowPattern {
                 RowNumber = 3,
                 ColumnsNumber = new[] { 5 }
@@ -25,7 +25,7 @@ internal static class AvailableGreyPatterns
             },
         };
 
-    public static RowPattern[] RectangularPattern => new[] {
+    public RowPattern[] RectangularPattern => new[] {
             new RowPattern {
                 RowNumber = 3,
                 ColumnsNumber = new[] { 3,4,5,6,7 }

@@ -4,7 +4,7 @@ using Bricklayer.Builder.Row;
 
 namespace Bricklayer.Builder;
 
-internal class BuildWall : IBuildWall
+internal class Wall : IWall
 {
     private readonly List<RowBricks> _wall = new();
     private readonly int _totalHeight;
@@ -12,7 +12,7 @@ internal class BuildWall : IBuildWall
     private readonly ICanCheckContainingBrickAndRectangle _greyPattern;
     private int _builtHeight = 0;
 
-    public BuildWall(int totalHeight, int totalWidth, ICanCheckContainingBrickAndRectangle greyPattern)
+    public Wall(int totalHeight, int totalWidth, ICanCheckContainingBrickAndRectangle greyPattern)
     {
         _totalHeight = totalHeight;
         _totalWidth = totalWidth;

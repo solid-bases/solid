@@ -1,6 +1,6 @@
 namespace Bricklayer.Builder.Pattern;
 
-internal interface IGreyPattern : ICanCheckContainingBrickAndRectangle, ICanAskForWallType
+internal interface IPatternHandler : ICanCheckContainingBrickAndRectangle, ICanAskForWallType
 {
     RowPattern[] Pattern { get; }
 }

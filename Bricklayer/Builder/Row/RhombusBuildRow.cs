@@ -3,12 +3,12 @@ using Bricklayer.Builder.Pattern;
 
 namespace Bricklayer.Builder.Row;
 
-internal class RhombusBuildRow : BuildRow, IBuildRow
+internal class RhombusBuildRow : BuildRow
 {
-    public RhombusBuildRow(int totalWidth, ICanCheckContainingBrick greyPattern, int currentRowNumber)
-        : base(totalWidth, greyPattern, currentRowNumber)
+    public RhombusBuildRow(int totalWidth, int currentRowNumber, ICanCheckContainingBrick greyPattern)
+        : base(totalWidth, currentRowNumber, greyPattern)
     {
     }
 
-    protected override bool IsCubicBrickNecessary(Brick currentBrick, bool firstCol, int currentRowNumber, int currentColNumber) => firstCol || LastCol(currentBrick);
+    protected override bool IsCubicBrickNecessary(Brick currentBrick, bool firstCol, int currentColNumber) => firstCol || LastCol(currentBrick);
 }

@@ -1,13 +1,19 @@
 namespace Bricklayer.Builder.Pattern;
 
-internal class GreyPattern : IGreyPattern
+internal class PatternHandler : IPatternHandler
 {
     public RowPattern[] Pattern
     {
         get
         {
-            return IsRectangle ? AvailableGreyPatterns.RectangularPattern : AvailableGreyPatterns.RhombusPattern;
+            return IsRectangle ? _availablePatterns.RectangularPattern : _availablePatterns.RhombusPattern;
         }
+    }
+
+    private readonly IAvailablePatterns _availablePatterns;
+    public PatternHandler(IAvailablePatterns availablePatterns)
+    {
+        _availablePatterns = availablePatterns;
     }
 
     public bool IsRectangle { get; private set; }
@@ -33,7 +39,7 @@ internal class GreyPattern : IGreyPattern
 
     private Func<RowPattern, bool> CurrentColumnInGreyColumn(int currentColNumber)
     {
-        bool ContainsCurrentColumn(RowPattern greyRow) => greyRow.ColumnsNumber.Any(IsCurrentColumn);
+        bool ContainsCurrentColumn(RowPattern greyRow) => Array.Exists(greyRow.ColumnsNumber, IsCurrentColumn);
         bool IsCurrentColumn(int greyCol) => greyCol == currentColNumber;
 
         return ContainsCurrentColumn;
