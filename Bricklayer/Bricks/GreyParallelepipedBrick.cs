@@ -3,7 +3,7 @@ namespace Bricklayer.Bricks;
 // Composition + Delegation
 internal class GreyParallelepipedBrick : Brick
 {
-    private readonly ParallelepipedBrick _parallelepipedBrick = new ParallelepipedBrick(new GreyBrick());
+    private readonly ParallelepipedBrick _parallelepipedBrick = new(new GreyBrick());
 
     // Forwarding
     internal override int Width { get => _parallelepipedBrick.Width; set => _parallelepipedBrick.Width = value; }

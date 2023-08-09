@@ -1,6 +1,7 @@
 namespace Bricklayer;
 
-internal static class UserInputPrompter {
+internal static class UserInputPrompter
+{
     public static string? AskAndVerifyValidInputs(Dictionary<string, string> allowedInputs)
     {
         var input = "\0";

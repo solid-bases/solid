@@ -21,4 +21,4 @@ internal interface ICanCheckRectangle
     bool IsRectangle { get; }
 }
 
-internal interface ICanCheckContainingBrickAndRectangle : ICanCheckContainingBrick, ICanCheckRectangle {}
+internal interface ICanCheckContainingBrickAndRectangle : ICanCheckContainingBrick, ICanCheckRectangle { }
