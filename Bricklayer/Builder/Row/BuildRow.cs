@@ -6,7 +6,7 @@ namespace Bricklayer.Builder.Row;
 internal abstract class BuildRow : IBuildRow
 {
     private const int ParallepipedSize = 20;
-    private readonly int CubicSize = ParallepipedSize / 2;
+    private readonly int _cubicSize = ParallepipedSize / 2;
 
     protected readonly ICanCheckContainingBrick _greyPattern;
 
@@ -86,7 +86,7 @@ internal abstract class BuildRow : IBuildRow
         bool firstCol = currentColNumber == 1;
         if (IsCubicBrickNecessary(currentBrick, firstCol, currentColNumber))
         {
-            currentBrick = NewBrick<RedCubicBrick>(CubicSize);
+            currentBrick = NewBrick<RedCubicBrick>(_cubicSize);
         }
 
         return currentBrick;
